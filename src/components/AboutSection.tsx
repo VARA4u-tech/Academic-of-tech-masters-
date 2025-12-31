@@ -56,27 +56,87 @@ export const AboutSection = () => {
             transition={{ duration: 0.6 }}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="relative perspective-1000 order-2 lg:order-1"
+            className="relative perspective-1000 order-2 lg:order-1 flex items-center justify-center"
           >
             <motion.div
               style={{ rotateX, rotateY }}
               className="relative preserve-3d"
             >
-              {/* Image Container */}
-              <div className="relative rounded-2xl overflow-hidden shadow-lg">
-                <img
-                  src="/placeholder.svg"
-                  alt="IT Training Institute"
-                  className="w-full h-[300px] md:h-[400px] object-cover"
+              {/* Main Circle Container */}
+              <div className="relative w-[280px] h-[280px] md:w-[380px] md:h-[380px]">
+                {/* Outer decorative ring */}
+                <div className="absolute inset-0 rounded-full border-4 border-primary/20" />
+                
+                {/* Large background circle */}
+                <div className="absolute inset-4 rounded-full bg-primary/10" />
+                
+                {/* Main image circle */}
+                <div className="absolute inset-8 rounded-full overflow-hidden border-4 border-background shadow-2xl">
+                  <img
+                    src="/src/assets/about-student.jpg"
+                    alt="Student learning IT"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                {/* Floating decorative circles */}
+                <motion.div
+                  animate={{ y: [-5, 5, -5] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute -top-4 right-8 w-12 h-12 md:w-16 md:h-16 rounded-full bg-accent/80 shadow-lg"
                 />
                 
+                <motion.div
+                  animate={{ y: [5, -5, 5] }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute bottom-8 -left-4 w-8 h-8 md:w-10 md:h-10 rounded-full border-4 border-primary"
+                />
+                
+                <motion.div
+                  animate={{ scale: [1, 1.1, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute top-1/3 -right-6 w-6 h-6 md:w-8 md:h-8 rounded-full bg-primary shadow-md"
+                />
+                
+                <motion.div
+                  animate={{ y: [-3, 3, -3] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute -bottom-2 right-1/4 w-10 h-10 md:w-14 md:h-14 rounded-full border-4 border-accent/60"
+                />
+
+                {/* Arc decorations */}
+                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 380 380">
+                  <motion.path
+                    d="M 60 190 A 130 130 0 0 1 190 60"
+                    fill="none"
+                    stroke="hsl(var(--primary))"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0 }}
+                    whileInView={{ pathLength: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: 0.5 }}
+                  />
+                  <motion.path
+                    d="M 320 190 A 130 130 0 0 1 190 320"
+                    fill="none"
+                    stroke="hsl(var(--accent))"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0 }}
+                    whileInView={{ pathLength: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: 0.7 }}
+                  />
+                </svg>
+
                 {/* Floating Badge */}
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="absolute top-4 left-4 bg-background/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-md border border-border"
+                  className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-background/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-md border border-border whitespace-nowrap"
                 >
                   <span className="text-xs md:text-sm font-semibold text-primary">10+ Years of Excellence</span>
                 </motion.div>
