@@ -1,140 +1,149 @@
-import { motion } from "framer-motion";
-import { Target, Eye, Users, Award, BookOpen, Briefcase } from "lucide-react";
+import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { Factory, Users, Briefcase } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useRef } from "react";
 
-const features = [
+const highlights = [
   {
-    icon: BookOpen,
-    title: "Industry-Ready Curriculum",
-    description: "Courses designed with real-world projects and latest technologies"
+    icon: Factory,
+    title: "Industry-Focused Training",
+    description: "Real-time tools & practical approach"
   },
   {
     icon: Users,
     title: "Expert Mentors",
-    description: "Learn from industry professionals with 10+ years experience"
+    description: "Trainers with real industry experience"
   },
   {
     icon: Briefcase,
-    title: "100% Placement Support",
-    description: "Dedicated placement cell with top company partnerships"
-  },
-  {
-    icon: Award,
-    title: "Certified Programs",
-    description: "Globally recognized certifications upon course completion"
+    title: "Career Support",
+    description: "Resume, interviews & placements"
   }
 ];
 
 export const AboutSection = () => {
+  const imageRef = useRef<HTMLDivElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [5, -5]), { stiffness: 100, damping: 20 });
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), { stiffness: 100, damping: 20 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!imageRef.current) return;
+    const rect = imageRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
   return (
-    <section id="about" className="py-16 md:py-24 bg-secondary/30">
+    <section id="about" className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-6">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-xs font-semibold rounded-full mb-4">
-            About Us
-          </span>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-foreground mb-4">
-            Academy of <span className="text-primary">Tech Masters</span>
-          </h2>
-          <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
-            Empowering careers since 2014 with industry-focused IT training in Vijayawada
-          </p>
-        </motion.div>
-
-        {/* Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left - Mission & Vision */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left Column - Visual */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            ref={imageRef}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-6"
+            transition={{ duration: 0.6 }}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            className="relative perspective-1000 order-2 lg:order-1"
           >
-            {/* Mission Card */}
-            <div className="bg-card rounded-2xl p-6 border border-border shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Target className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2">Our Mission</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    To bridge the gap between academic knowledge and industry requirements by providing 
-                    practical, hands-on training that prepares students for successful careers in IT.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Vision Card */}
-            <div className="bg-card rounded-2xl p-6 border border-border shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
-                  <Eye className="w-6 h-6 text-accent" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2">Our Vision</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    To become the leading IT training institute in Andhra Pradesh, known for producing 
-                    skilled professionals who excel in the global technology landscape.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Stats Row */}
-            <div className="grid grid-cols-3 gap-4 pt-4">
-              {[
-                { value: "10+", label: "Years" },
-                { value: "2000+", label: "Students" },
-                { value: "300+", label: "Placements" }
-              ].map((stat, index) => (
+            <motion.div
+              style={{ rotateX, rotateY }}
+              className="relative preserve-3d"
+            >
+              {/* Image Container */}
+              <div className="relative rounded-2xl overflow-hidden shadow-lg">
+                <img
+                  src="/placeholder.svg"
+                  alt="IT Training Institute"
+                  className="w-full h-[300px] md:h-[400px] object-cover"
+                />
+                
+                {/* Floating Badge */}
                 <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                  className="text-center p-4 bg-card rounded-xl border border-border"
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="absolute top-4 left-4 bg-background/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-md border border-border"
                 >
-                  <p className="text-xl md:text-2xl font-bold text-primary">{stat.value}</p>
-                  <p className="text-xs text-muted-foreground">{stat.label}</p>
+                  <span className="text-xs md:text-sm font-semibold text-primary">10+ Years of Excellence</span>
                 </motion.div>
-              ))}
-            </div>
+              </div>
+            </motion.div>
           </motion.div>
 
-          {/* Right - Features Grid */}
+          {/* Right Column - Content */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="grid sm:grid-cols-2 gap-4"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="space-y-6 order-1 lg:order-2"
           >
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                className="group bg-card rounded-2xl p-5 border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300"
+            {/* Section Label */}
+            <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-xs font-semibold rounded-full uppercase tracking-wide">
+              About Us
+            </span>
+
+            {/* Main Heading */}
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-foreground leading-tight">
+              Building <span className="text-primary">Careers</span>, Not Just Courses
+            </h2>
+
+            {/* Description */}
+            <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-lg">
+              We are a professional IT training institute focused on real-world skills, 
+              industry-level projects, and career outcomes. Our mission is to make students 
+              job-ready with confidence.
+            </p>
+
+            {/* Highlight Cards */}
+            <div className="grid sm:grid-cols-3 gap-4 pt-4">
+              {highlights.map((item, index) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                  className="group bg-card p-4 rounded-xl border border-border hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                >
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 group-hover:bg-accent/20 flex items-center justify-center mb-3 transition-colors duration-300">
+                    <item.icon className="w-5 h-5 text-primary group-hover:text-accent transition-colors duration-300" />
+                  </div>
+                  <h4 className="text-xs md:text-sm font-semibold text-foreground mb-1">{item.title}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{item.description}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* CTA Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.6 }}
+              className="pt-2"
+            >
+              <Button 
+                variant="outline" 
+                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
               >
-                <div className="w-10 h-10 rounded-lg bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center mb-3 transition-colors">
-                  <feature.icon className="w-5 h-5 text-primary" />
-                </div>
-                <h4 className="text-sm font-semibold text-foreground mb-1.5">{feature.title}</h4>
-                <p className="text-xs text-muted-foreground leading-relaxed">{feature.description}</p>
-              </motion.div>
-            ))}
+                Know More About Us
+              </Button>
+            </motion.div>
           </motion.div>
         </div>
       </div>
