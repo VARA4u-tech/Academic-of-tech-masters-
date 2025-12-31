@@ -51,7 +51,7 @@ export const AboutSection = () => {
   };
 
   return (
-    <section id="about" className="py-16 md:py-24 bg-background overflow-hidden">
+    <section id="about" className="py-16 md:py-24 pb-0 bg-background overflow-hidden">
       <div className="container mx-auto px-6">
         {/* Light grey background container with white shape */}
         <div className="relative bg-muted/50 rounded-2xl md:rounded-3xl overflow-visible">
