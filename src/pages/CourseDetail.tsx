@@ -161,11 +161,7 @@ export default function CourseDetail() {
                     </nav>
 
                     <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                        >
+                        <div>
                             <div className="flex flex-wrap items-center gap-3 mb-6">
                                 <Badge className="bg-blue-600/20 hover:bg-blue-600/30 text-blue-400 border-blue-500/30 backdrop-blur-md px-3 py-1 text-[10px] font-bold uppercase tracking-widest">
                                     <Layout className="w-3 h-3 mr-1.5" />
@@ -226,12 +222,9 @@ export default function CourseDetail() {
                                     Download Brochure
                                 </Button>
                             </div>
-                        </motion.div>
+                        </div>
 
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
+                        <div
                             className="relative lg:justify-self-end"
                         >
                             <div className="relative z-10 w-full max-w-[500px] aspect-square rounded-[2rem] overflow-hidden bg-[#0a192f] border-4 border-white/10 shadow-3xl shadow-blue-500/20 flex items-center justify-center p-8">
@@ -244,10 +237,7 @@ export default function CourseDetail() {
                             </div>
 
                             {/* Trust Badge */}
-                            <motion.div
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 0.8 }}
+                            <div
                                 className="absolute -bottom-6 -right-6 md:-right-10 bg-white/95 backdrop-blur-md p-6 rounded-3xl shadow-2xl z-20 border border-white/50 hidden md:block"
                             >
                                 <div className="flex items-center gap-4">
@@ -259,8 +249,8 @@ export default function CourseDetail() {
                                         <p className="text-xs text-slate-500 font-medium">Industry Recognized Academy</p>
                                     </div>
                                 </div>
-                            </motion.div>
-                        </motion.div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

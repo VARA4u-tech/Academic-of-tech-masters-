@@ -23,14 +23,8 @@ export const PlacementsSection = () => {
     <section id="placements" className="py-12 sm:py-16 md:py-24 bg-secondary relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-start">
-          
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="relative space-y-8"
-          >
+
+          <div className="relative space-y-8">
             <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-lg relative group">
               <img
                 src="/Placement.png"
@@ -41,44 +35,32 @@ export const PlacementsSection = () => {
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {stats.map((stat, index) => (
-                <motion.div
+              {stats.map((stat) => (
+                <div
                   key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.5 }}
-                  transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
                   className="bg-card rounded-xl p-4 text-center border border-border/50"
                 >
                   <p className="text-xl md:text-2xl font-bold text-primary mb-1">{stat.number}</p>
                   <p className="text-xs text-muted-foreground uppercase font-semibold tracking-wider">{stat.label}</p>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           <div className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
+            <div>
               <h2 className="section-heading">
                 Dedicated Placement Support
               </h2>
               <p className="section-subheading mt-4">
                 From resume building to salary negotiation, we provide end-to-end career assistance to ensure you land your dream job.
               </p>
-            </motion.div>
+            </div>
 
             <div className="space-y-2 pt-4">
-              {placementFeatures.map((item, index) => (
-                <motion.div
+              {placementFeatures.map((item) => (
+                <div
                   key={item.id}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.5 }}
-                  transition={{ delay: index * 0.1 }}
                   className="bg-card border border-border/50 rounded-xl px-5 last:border-b-0 transition-shadow hover:shadow-md"
                 >
                   <button
@@ -93,16 +75,16 @@ export const PlacementsSection = () => {
                     </div>
                   </button>
                   <motion.div
-                      initial={false}
-                      animate={{ height: openId === item.id ? "auto" : 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="overflow-hidden"
+                    initial={false}
+                    animate={{ height: openId === item.id ? "auto" : 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="overflow-hidden"
                   >
-                      <p className="text-muted-foreground text-sm pb-5">
-                          {item.content}
-                      </p>
+                    <p className="text-muted-foreground text-sm pb-5">
+                      {item.content}
+                    </p>
                   </motion.div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>

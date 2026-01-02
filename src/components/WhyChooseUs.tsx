@@ -25,27 +25,17 @@ export const WhyChooseUs = () => {
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="container mx-auto px-4 sm:px-6 relative">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12 md:mb-16"
-        >
+        <div className="text-center mb-12 md:mb-16">
           <h2 className="section-heading">The TechVarsity Difference</h2>
           <p className="section-subheading mt-4">
             We're more than just a training center. We're a career launchpad.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
           {reasons.map((reason, index) => (
-            <motion.div
+            <div
               key={reason.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
               className={`flex flex-col items-center text-center ${index > 0 ? 'md:border-l md:border-border/70 md:pl-8' : ''} ${index < reasons.length - 1 ? 'md:pr-8' : ''}`}
             >
               <motion.div
@@ -67,7 +57,7 @@ export const WhyChooseUs = () => {
               <p className="text-sm text-muted-foreground leading-relaxed">
                 {reason.description}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

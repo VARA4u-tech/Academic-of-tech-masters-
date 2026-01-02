@@ -6,11 +6,10 @@ import logo from "@/assets/logo.png"; // Importing the logo image
 
 const quickLinks = [
   { name: "Home", href: "/" },
-  { name: "About Us", href: "/#about" },
-  { name: "Resource Center", href: "/" },
-  { name: "Careers", href: "/" },
-  { name: "Instructor", href: "/" },
-  { name: "Contact Us", href: "/#contact" },
+  { name: "About Us", href: "/about-us" },
+  { name: "Resources", href: "/what-we-do#resources" }, // Link to section on What We Do page
+  // Removed "Careers" and "Instructor" as they don't have dedicated pages yet
+  { name: "Contact Us", href: "/contact" },
 ];
 
 const footerCourses = [
@@ -47,12 +46,7 @@ export const Footer = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-20">
           {/* Brand & Contact Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
+          <div>
             <Link to="/" className="inline-block group mb-6">
               <img src={logo} alt="AOTMS Logo" className="h-10 sm:h-12 w-auto filter invert" />
             </Link>
@@ -93,15 +87,10 @@ export const Footer = () => {
                 </span>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Quick Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
+          <div>
             <h4 className="text-sm font-semibold uppercase tracking-wide mb-6 text-primary-foreground/70">Company info</h4>
             <ul className="grid grid-cols-1 gap-5">
               {quickLinks.map((link) => (
@@ -116,15 +105,10 @@ export const Footer = () => {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
           {/* Programs */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
+          <div>
             <h4 className="text-sm font-semibold uppercase tracking-wide mb-6 text-primary-foreground/70">Popular Courses</h4>
             <ul className="grid grid-cols-1 gap-5">
               {courses.map((course) => (
@@ -139,15 +123,10 @@ export const Footer = () => {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
           {/* Join Us */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
+          <div>
             <h4 className="text-sm font-semibold uppercase tracking-wide mb-6 text-primary-foreground/70">Follow Our Journey</h4>
             <div className="flex gap-4 mb-12">
               {socialLinks.map((social) => (
@@ -158,7 +137,7 @@ export const Footer = () => {
                   rel="noopener noreferrer"
                   whileHover={{ y: -3, scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center text-primary-foreground hover:bg-primary-foreground hover:text-primary transition-all duration-300 border border-primary-foreground/20 shadow-lg shadow-black/10"
+                  className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center text-primary-foreground hover:bg-primary-foreground hover:text-primary transition-all duration-200"
                 >
                   <social.icon className="w-5 h-5 transition-transform group-hover:rotate-12" />
                 </motion.a>
@@ -181,27 +160,23 @@ export const Footer = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Bottom Bar */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="border-t border-primary-foreground/10 mt-12 sm:mt-16 pt-6 sm:pt-8"
-        >
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center">
-            <p className="text-xs font-medium text-primary-foreground/70">
-              © {new Date().getFullYear()} AOTMS. Built with ❤️ for Future Tech Leaders.
-            </p>
-            <div className="flex gap-4">
-              <Link to="/privacy-policy" className="text-xs font-medium text-primary-foreground/70 hover:text-primary-foreground transition-colors">Privacy Policy</Link>
-              <Link to="/terms" className="text-xs font-medium text-primary-foreground/70 hover:text-primary-foreground transition-colors">Terms of Service</Link>
+        <div>
+          <div className="border-t border-primary-foreground/10 mt-12 sm:mt-16 pt-6 sm:pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center">
+              <p className="text-xs font-medium text-primary-foreground/70">
+                © {new Date().getFullYear()} AOTMS. Built with ❤️ for Future Tech Leaders.
+              </p>
+              <div className="flex gap-4">
+                <Link to="/privacy-policy" className="text-xs font-medium text-primary-foreground/70 hover:text-primary-foreground transition-colors">Privacy Policy</Link>
+                <Link to="/terms" className="text-xs font-medium text-primary-foreground/70 hover:text-primary-foreground transition-colors">Terms of Service</Link>
+              </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </footer>
   );

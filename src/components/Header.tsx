@@ -21,19 +21,19 @@ const courses = [
 
 const navLinks = [
   {
-    name: "What We Do", href: "#", hasDropdown: true, dropdownItems: [
-      { name: "Placements", href: "/#placements" },
-      { name: "Interns", href: "#" },
-      { name: "Resources", href: "#" }
+    name: "What We Do", href: "/what-we-do", hasDropdown: true, dropdownItems: [
+      { name: "Placements", href: "/what-we-do#placements" },
+      { name: "Interns", href: "/what-we-do#interns" },
+      { name: "Resources", href: "/what-we-do#resources" }
     ]
   },
-  { name: "Courses", href: "#courses", hasDropdown: true, dropdownItems: courses },
+  { name: "Courses", href: "/courses", hasDropdown: true, dropdownItems: courses },
   {
-    name: "About Us", href: "#about", hasDropdown: true, dropdownItems: [
-      { name: "Blog", href: "#" }
+    name: "About Us", href: "/about-us", hasDropdown: true, dropdownItems: [
+      { name: "Blog", href: "/blog" }
     ]
   },
-  { name: "Contact", href: "/#contact" },
+  { name: "Contact", href: "/contact" },
 ];
 
 const socialLinks = [
